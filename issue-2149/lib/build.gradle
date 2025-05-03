@@ -1,0 +1,40 @@
+plugins {
+    id 'codenarc'
+    id 'groovy'
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.groovy.all
+
+    implementation libs.guava
+
+    testImplementation libs.spock.core
+    testImplementation libs.junit
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    api libs.commons.math3
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(24)
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+dependencies {
+    "codenarc"("org.codenarc:CodeNarc:3.6.0-groovy-4.0")
+}
+
+codenarcTest {
+    compilationClasspath = codenarcMain.compilationClasspath + sourceSets.test.compileClasspath
+}
