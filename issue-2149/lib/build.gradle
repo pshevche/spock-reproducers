@@ -11,14 +11,10 @@ repositories {
 dependencies {
     implementation libs.groovy.all
 
-    implementation libs.guava
-
     testImplementation libs.spock.core
     testImplementation libs.junit
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    api libs.commons.math3
 }
 
 java {
